@@ -1,0 +1,435 @@
+/* ==========================================================
+   Student Dashboard – soft blue "university" theme
+   Save as: Css/style.css
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap");
+
+/* ---------- Design tokens ---------- */
+:root {
+    --bg-1: #dce8ff;
+    --bg-2: #f4f8ff;
+    --card: #ffffff;
+    --soft: #eef4ff;          /* pale blue tint used inside cards */
+    --primary: #5b9bff;
+    --primary-dark: #3f84f5;
+    --primary-light: #cfe1ff;
+    --text: #1e2433;
+    --muted: #7b8499;
+    --line: #e3eaf7;
+    --success: #34a853;
+    --danger: #ef5b5b;
+    --warning: #f5a524;
+    --shadow: 0 10px 30px rgba(91, 155, 255, 0.14);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-pill: 999px;
+}
+
+/* Dark mode – works with body.dark, body.dark-mode or [data-theme="dark"] */
+body.dark,
+body.dark-mode,
+[data-theme="dark"] body,
+html[data-theme="dark"] {
+    --bg-1: #121a2e;
+    --bg-2: #0d1322;
+    --card: #1a2338;
+    --soft: #222d47;
+    --primary-light: #2b3d66;
+    --text: #e9eefc;
+    --muted: #93a0bd;
+    --line: #2a3555;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.5;
+    transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3 {
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+.header {
+    padding: 28px 32px 8px;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 300;
+}
+
+.header-container > div {
+    display: flex;
+    gap: 10px;
+}
+
+/* ---------- Buttons (pill style) ---------- */
+button {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 10px 22px;
+    background: var(--primary);
+    color: #fff;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+button:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 6px 16px rgba(91, 155, 255, 0.35);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+#themebtn,
+#resetbtn {
+    background: var(--soft);
+    color: var(--primary-dark);
+}
+
+#themebtn:hover,
+#resetbtn:hover {
+    background: var(--primary-light);
+    box-shadow: none;
+}
+
+/* ---------- Layout ---------- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 32px 40px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ---------- Stats cards ---------- */
+.stats {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.stats > div {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 22px 26px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* soft blue accent bar on the left, like the “Active” / selected tags */
+.stats > div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+    width: 5px;
+    border-radius: 0 6px 6px 0;
+    background: var(--primary);
+}
+
+.stats h3 {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.stats p {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    line-height: 1.2;
+    margin-top: 4px;
+}
+
+/* ---------- Section cards ---------- */
+section {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+
+section h1,
+section h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* ---------- Form ---------- */
+#studentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#studentForm > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding-left: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+select {
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text);
+    width: 100%;
+    padding: 12px 18px;
+    background: var(--soft);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-pill);
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    background: var(--card);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(91, 155, 255, 0.18);
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b9bff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 40px;
+}
+
+#submitbtn,
+#resetbtn {
+    width: 100%;
+    padding: 12px;
+}
+
+/* ---------- Manage students (search + filter + table) ---------- */
+section:last-of-type {
+    min-width: 0; /* lets the table scroll instead of stretching the grid */
+}
+
+#searchInput {
+    width: calc(60% - 8px);
+    margin-right: 12px;
+    display: inline-block;
+}
+
+#filterCourse {
+    width: calc(40% - 8px);
+    display: inline-block;
+}
+
+section > div:has(table) {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    font-size: 0.92rem;
+}
+
+/* overrides the inline border="black" attribute on the table */
+table,
+th,
+td {
+    border: none;
+}
+
+thead th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding: 4px 16px;
+    white-space: nowrap;
+}
+
+tbody td {
+    background: var(--soft);
+    padding: 14px 16px;
+    vertical-align: middle;
+}
+
+tbody td:first-child {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+tbody td:last-child {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    white-space: nowrap;
+}
+
+tbody tr {
+    transition: transform 0.15s;
+}
+
+tbody tr:hover td {
+    background: var(--primary-light);
+}
+
+/* Action buttons (edit / delete) that JS puts inside the last cell */
+td button {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    margin-right: 4px;
+}
+
+td button.edit,
+td button.edit-btn,
+td button[class*="edit"] {
+    background: var(--primary);
+}
+
+td button.delete,
+td button.delete-btn,
+td button[class*="delete"] {
+    background: var(--danger);
+}
+
+td button[class*="delete"]:hover {
+    background: #dc4444;
+    box-shadow: 0 6px 16px rgba(239, 91, 91, 0.35);
+}
+
+/* Grade badges – add a class from JS, e.g. <span class="grade A"> */
+.grade,
+td span {
+    display: inline-block;
+    padding: 3px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--primary);
+    color: #fff;
+}
+
+.grade.A, .grade-A { background: var(--success); }
+.grade.B, .grade-B { background: var(--primary); }
+.grade.C, .grade-C { background: var(--warning); }
+.grade.D, .grade-D,
+.grade.F, .grade-F { background: var(--danger); }
+
+/* Empty message */
+#emptymsg {
+    text-align: center;
+    color: var(--muted);
+    background: var(--soft);
+    border-radius: var(--radius-md);
+    padding: 28px 16px;
+    margin-top: 12px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 8px 16px 32px;
+}
+
+footer p,
+footer span {
+    display: inline;
+}
+
+footer span::before {
+    content: " © ";
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .header,
+    main {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    #searchInput,
+    #filterCourse {
+        width: 100%;
+        margin: 0 0 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
