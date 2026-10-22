@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="./Css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <h1>Student Dashboard</h1>
+            <div>
+                <button id="themebtn">Dark Mode</button>
+                <button id="fetchbtn">Fetch Users</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats">
+            <div>
+                <h3>Total students</h3>
+                <p id="totalStudent">0</p>
+            </div>
+            <div>
+                <h3>Average marks</h3>
+                <p id="averageMarks">0</p>
+            </div>
+            <div>
+                <h3>Courses</h3>
+                <p id="totalCourses">0</p>
+            </div>
+        </div>
+
+        <section>
+            <h1 id="formTitle">Add new Student</h1>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                <div>
+                    <label for="studentName">Student Name : </label>
+                    <input type="text" placeholder="Enter student name" id="studentName" required>
+                </div>
+                <div>
+                    <label for="studentEmail">Student Email : </label>
+                    <input type="email" placeholder="Enter student Email" id="studentEmail" required>
+                </div>
+
+                <div>
+                    <label for="">Courses</label>
+                    <select name="course" id="course" required>
+                        <option value="empty">Select Course</option>
+                        <option value="FDS">Full Stack Development</option>
+                        <option value="Java">Java</option>
+                        <option value="Js">JavaScript</option>
+                        <option value="python">Python</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="studentMarks">Student Marks : </label>
+                    <input type="number" placeholder="Enter Marks" id="studentMarks" min="0" max="100" required>
+                </div>
+
+                <div>
+                    <button type="submit" id="submitbtn">Add Student</button>
+                </div>
+                <div>
+                    <button type="reset" id="resetbtn">Clear Form</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Manage Students</h2>
+            <input type="search" name="search" id="searchInput" placeholder="Search Student by Name or email">
+
+            <select id="filterCourse">
+                <option value="empty">All Courses</option>
+                <option value="FDS">Full Stack Development</option>
+                <option value="Java">Java</option>
+                <option value="Js">JavaScript</option>
+                <option value="python">Python</option>
+            </select>
+
+            <div>
+                <table border="black">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Courses</th>
+                            <th>Marks</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- With the help of js students will appear here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="emptymsg">No Students found add a student to get started</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Student management dashboard</p>
+        <span id="currentYear"></span>
+    </footer>
+
+    <script src="./JavaScript/app.js"></script>
+</body>
+</html>
