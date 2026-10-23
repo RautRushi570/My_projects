@@ -51,6 +51,10 @@ html[data-theme="dark"] {
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
     color: var(--text);
